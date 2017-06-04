@@ -21,7 +21,7 @@
     {
       "type": "shell",
       "inline": [
-        "pacman -Syy --noconfirm awk json-c ceph gdisk git device-mapper liburcu libaio dosfstools wget parallel cryptsetup",
+        "pacman -Syy --noconfirm awk json-c ceph gdisk git device-mapper liburcu libaio dosfstools wget parallel cryptsetup gzip zlib lzo xz lz4 gcc5 bdf-unifont",
         "mkdir -p /home/build",
         "cd /home/build",
         "wget https://aur.archlinux.org/cgit/aur.git/snapshot/multipath-tools.tar.gz",
