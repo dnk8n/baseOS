@@ -1,0 +1,40 @@
+{
+  "builders": [
+    {
+      "type": "docker",
+      "image": "base/devel",
+      "run_command": [
+        "--privileged",
+        "-d",
+        "-i",
+        "-t",
+        "{{.Image}}",
+        "/bin/bash"
+      ],
+      "volumes": {
+        "{{template_dir}}/../..": "/tmp/baseOS"
+      },
+      "discard": true
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "inline": [
+        "pacman -Syy --noconfirm awk json-c ceph gdisk git device-mapper liburcu libaio dosfstools wget",
+        "mkdir -p /home/build",
+        "cd /home/build",
+        "wget https://aur.archlinux.org/cgit/aur.git/snapshot/multipath-tools.tar.gz",
+        "tar -zxvf multipath-tools.tar.gz",
+        "chgrp -R nobody /home/build",
+        "chmod -R g+ws /home/build",
+        "setfacl -R -m u::rwx,g::rwx /home/build",
+        "setfacl -R -d --set u::rwx,g::rwx,o::- /home/build",
+        "cd multipath-tools",
+        "sudo -u nobody makepkg",
+        "pacman --noconfirm -U multipath-tools-*.pkg.tar.xz",
+        "source /tmp/baseOS/build-scripts/build-img.sh"
+      ]
+    }
+  ]
+}
