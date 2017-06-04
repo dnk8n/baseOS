@@ -21,15 +21,11 @@
     {
       "type": "shell",
       "inline": [
-        "pacman -Syy --noconfirm awk json-c ceph gdisk git device-mapper liburcu libaio dosfstools wget parallel cryptsetup gzip zlib lzo xz lz4 gcc5 bdf-unifont",
+        "pacman -Syy --noconfirm awk json-c ceph gdisk git device-mapper liburcu libaio dosfstools wget parallel cryptsetup gzip zlib lzo xz lz4 gcc5 bdf-unifont squashfs-tools grub",
         "mkdir -p /home/build",
         "cd /home/build",
         "wget https://aur.archlinux.org/cgit/aur.git/snapshot/multipath-tools.tar.gz",
-        "wget https://aur.archlinux.org/cgit/aur.git/snapshot/sasquatch.tar.gz",
-        "wget https://aur.archlinux.org/cgit/aur.git/snapshot/grub2-git.tar.gz",
         "tar -zxvf multipath-tools.tar.gz",
-        "tar -zxvf sasquatch.tar.gz",
-        "tar -zxvf grub2-git.tar.gz",
         "chgrp -R nobody /home/build",
         "chmod -R g+ws /home/build",
         "setfacl -R -m u::rwx,g::rwx /home/build",
@@ -37,12 +33,6 @@
         "cd /home/build/multipath-tools",
         "sudo -u nobody makepkg",
         "pacman --noconfirm -U multipath-tools-*.pkg.tar.xz",
-        "cd /home/build/sasquatch",
-        "sudo -u nobody makepkg",
-        "pacman --noconfirm -U sasquatch-*.pkg.tar.xz",
-        "cd /home/build/grub2-git",
-        "sudo -u nobody makepkg",
-        "pacman --noconfirm -U grub2-git-*.pkg.tar.xz",
         "source /tmp/baseOS/build.sh"
       ]
     }
