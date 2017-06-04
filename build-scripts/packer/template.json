@@ -33,7 +33,7 @@
         "cd /home/build/multipath-tools",
         "sudo -u nobody makepkg",
         "pacman --noconfirm -U multipath-tools-*.pkg.tar.xz",
-        "source /tmp/baseOS/build.sh"
+        ". /tmp/baseOS/build.sh"
       ]
     }
   ]
